@@ -138,7 +138,7 @@ https://github.com/user-attachments/assets/f7b871aa-0af3-43bf-9d50-43c46247cc04
 https://github.com/user-attachments/assets/2c9bd6b2-c357-45dc-923b-822d47123291
 
 
-https://github.com/user-attachments/assets/8e870aac-10f3-414a-a4af-228c6137dad5
+PS : I'm aware that my code isn't optimized, even though I have some ideas for improvement. Therefore, feel free to modify it to reduce the calculation time.
 
 
 

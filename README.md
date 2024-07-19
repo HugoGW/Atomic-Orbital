@@ -35,7 +35,7 @@ $\textbf{I - Picture of an orbital in 2D}$
 
 In this part, we're going to use the function ψ(x, y, z, n, l, m) written above to plot a picture of dimension $N_x \times N_y$ of an atomic orbital of an hydrogenoid.
 
-First, we define our wave function Psi as a matrix of zeros of the size $N_x \times N_y$ and we create an array of $X$ and $Y$ :
+First, we define our wave function \textit{Psi} as a matrix of zeros of the size $N_x \times N_y$ and we create an array of $X$ and $Y$ :
 
     Psi = np.zeros((Nx, Ny))
         X = np.linspace(-Lx/2, Lx/2, Nx)
@@ -61,8 +61,40 @@ For each i and j of X and Y, we plot a dot of a certain color that matches the p
 
 $\textbf{II - Video of an orbital in 2D}$
 
-Now, we're going to use and modify the code in the $\textbf{ Part I}$ above. In fact, in the part where we plot for each $(i,j)$ we didn't take into account the 
+Now, we're going to use and modify the code in the $\textbf{ Part I}$ above. In fact, in the "loop" we wrote \textit{Psi[i, j] = ψ(x, y, 0, n, l, m)} which means that we plot $ψ(x, y, 0, n, l, m)$ for $z=0$. Thus now on, we're going to plot $ψ(x, y, z, n, l, m)$ $\forall z \in [-L_z/2, L_z/2]$ with a space length $N_z$ and a space step $dz = L_z/N_z$.
 
+    def orbital_2D_movie(n, l, m):
+        z = -Lz/2
+        dz = Lz/Nz
+        Psi = np.zeros((Nx, Ny))
+        X = np.linspace(-Lx/2, Lx/2, Nx)
+        Y = np.linspace(-Ly/2, Ly/2, Ny)
+    
+        fig, ax = plt.subplots(figsize=(10, 8))
+        pcm = ax.pcolormesh(X, Y, Psi, cmap='inferno', shading='auto', vmin=0, vmax=1)
+        plt.colorbar(pcm, ax=ax, label='Probability density')
+        plt.text(-Lx/2.1, -Ly/2.1, f'n={n} l={l} m={m}', fontsize=13, color='white')
+        plt.xlabel('x')
+        plt.ylabel('y')
+    
+        while z < Lz/2:
+            for i, x in enumerate(X):
+                for j, y in enumerate(Y):
+                    Psi[i, j] = ψ(x, y, z, n, l, m)
+            
+            Psi /= np.trapz(np.trapz(Psi, X), Y)
+            
+            pcm.set_array(Psi)
+            pcm.set_clim(vmin=np.min(Psi), vmax=np.max(Psi))
+            plt.pause(0.0001)
+            
+            z += dz
+        
+        plt.show()
+
+So, how does the loop work ?
+
+We define our wave function \textit{Psi} like before and we define $z=-L_z/2$ that will be used in the loop : While $z \lt L_z/2$ $\longrightarrow$ we plot the wave function \textit{Psi[i, j] = ψ(x, y, z, n, l, m)}, then we make a pause and we plot the wave function for $z+dz$ : \textit{Psi[i, j] = ψ(x, y, z+dz, n, l, m)} etc. Until $z=L_z/2$
 
 
 

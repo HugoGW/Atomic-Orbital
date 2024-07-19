@@ -61,21 +61,8 @@ For each i and j of X and Y, we plot a dot of a certain color that matches the p
 
 $\textbf{II - Video of an orbital in 2D}$
 
-Now, we're going to use and modify the code in the $\textbf{ Part I}$ above. In fact, in the "loop" we wrote \textit{Psi[i, j] = ψ(x, y, 0, n, l, m)} which means that we plot $ψ(x, y, 0, n, l, m)$ for $z=0$. Thus now on, we're going to plot $ψ(x, y, z, n, l, m)$ $\forall z \in [-L_z/2, L_z/2]$ with a space length $N_z$ and a space step $dz = L_z/N_z$.
+Now, we're going to use and modify the code in the $\textbf{ Part I}$ above. In fact, in the "loop" we wrote \textit{Psi[i, j] = ψ(x, y, 0, n, l, m)} which means that we plot $ψ(x, y, 0, n, l, m)$ for $z=0$. Thus, from now on, we're going to plot $ψ(x, y, z, n, l, m)$ $\forall z \in [-L_z/2, L_z/2]$ with a space length $N_z$ and a space step $dz = L_z/N_z$.
 
-    def orbital_2D_movie(n, l, m):
-        z = -Lz/2
-        dz = Lz/Nz
-        Psi = np.zeros((Nx, Ny))
-        X = np.linspace(-Lx/2, Lx/2, Nx)
-        Y = np.linspace(-Ly/2, Ly/2, Ny)
-    
-        fig, ax = plt.subplots(figsize=(10, 8))
-        pcm = ax.pcolormesh(X, Y, Psi, cmap='inferno', shading='auto', vmin=0, vmax=1)
-        plt.colorbar(pcm, ax=ax, label='Probability density')
-        plt.text(-Lx/2.1, -Ly/2.1, f'n={n} l={l} m={m}', fontsize=13, color='white')
-        plt.xlabel('x')
-        plt.ylabel('y')
     
         while z < Lz/2:
             for i, x in enumerate(X):
@@ -94,7 +81,20 @@ Now, we're going to use and modify the code in the $\textbf{ Part I}$ above. In 
 
 So, how does the loop work ?
 
-We define our wave function \textit{Psi} like before and we define $z=-L_z/2$ that will be used in the loop : While $z \lt L_z/2$ $\longrightarrow$ we plot the wave function \textit{Psi[i, j] = ψ(x, y, z, n, l, m)}, then we make a pause and we plot the wave function for $z+dz$ : \textit{Psi[i, j] = ψ(x, y, z+dz, n, l, m)} etc. Until $z=L_z/2$
+We define our wave function $\textit{Psi}$ like before and we define $z=-L_z/2$ that will be used in the loop : While $z \lt L_z/2$ $\longrightarrow$ we plot the wave function $\textit{Psi[i, j] = ψ(x, y, z, n, l, m)}$, then we make a pause and we plot the wave function for $z+dz$ : $\textit{Psi[i, j] = ψ(x, y, z+dz, n, l, m)}$ etc. Until $z + N_z dz=L_z/2$
 
+$\textbf{III - Picture of an orbital in 3D}$
 
+The function $\textit{orbital_3D_pic(n, l, m, num_points=10000)} plots a 3D image of the orbital defined by the quantum numbers $n$, $l$, and $m$.
 
+We begin by creating 3 arrays $X, Y$ and $Z$ to represent the spatial dimensions, ranging from $-L/2$ to $L/2$ and the matrix $\textit{Psi} with dimensions $N_x\times N_y \times N_z$:
+
+    X = np.linspace(-Lx/2, Lx/2, Nx)
+        Y = np.linspace(-Ly/2, Ly/2, Ny)
+        Z = np.linspace(-Lz/2, Lz/2, Nz)
+        
+        Psi = np.zeros((Nx, Ny, Nz))
+
+For each dot $(i,j,k) \in (x,y,z)$ we plot a colored dot that matches with the probability of an electron being at this coordinate, then we normalize by using the trapezoidal integration method in all three spatial dimensions.
+
+In order to see the inside of the 3D atomic orbital, a mask is applied to filter out points where $z \lt 0$. This is done using the condition Z_flat > 0.

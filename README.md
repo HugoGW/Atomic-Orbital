@@ -35,7 +35,7 @@ $\textbf{I - Picture of an orbital in 2D}$
 
 In this part, we're going to use the function ψ(x, y, z, n, l, m) written above to plot a picture of dimension $N_x \times N_y$ of an atomic orbital of an hydrogenoid.
 
-First, we define our wave function \textit{Psi} as a matrix of zeros of the size $N_x \times N_y$ and we create an array of $X$ and $Y$ :
+First, we define our wave function $\textit{Psi}$ as a matrix of zeros of the size $N_x \times N_y$ and we create an array of $X$ and $Y$ :
 
     Psi = np.zeros((Nx, Ny))
         X = np.linspace(-Lx/2, Lx/2, Nx)
@@ -59,7 +59,7 @@ For each i and j of X and Y, we plot a dot of a certain color that matches the p
 
 $\textbf{II - Video of an orbital in 2D}$
 
-Now, we're going to use and modify the code in the $\textbf{ Part I}$ above. In fact, in the "loop" we wrote \textit{Psi[i, j] = ψ(x, y, 0, n, l, m)} which means that we plot $ψ(x, y, 0, n, l, m)$ for $z=0$. Thus, from now on, we're going to plot $ψ(x, y, z, n, l, m)$ $\forall z \in [-L_z/2, L_z/2]$ with a space length $N_z$ and a space step $dz = L_z/N_z$.
+Now, we're going to use and modify the code in the $\textbf{Part I}$ above. In fact, in the "loop" we wrote $\textit{Psi[i, j] = ψ(x, y, 0, n, l, m)}$ which means that we plot $ψ(x, y, 0, n, l, m)$ for $z=0$. Thus, from now on, we're going to plot $ψ(x, y, z, n, l, m)$ $\forall z \in [-L_z/2, L_z/2]$ with a space length $N_z$ and a space step $dz = L_z/N_z$.
 
     
         while z < Lz/2:
@@ -85,7 +85,7 @@ $\textbf{III - Picture of an orbital in 3D}$
 
 The function $\textit{orbital_3D_pic(n, l, m, num_points=10000)} plots a 3D image of the orbital defined by the quantum numbers $n$, $l$, and $m$.
 
-We begin by creating 3 arrays $X, Y$ and $Z$ to represent the spatial dimensions, ranging from $-L/2$ to $L/2$ and the matrix $\textit{Psi} with dimensions $N_x\times N_y \times N_z$:
+We begin by creating 3 arrays $X, Y$ and $Z$ to represent the spatial dimensions, ranging from $-L/2$ to $L/2$ and the matrix $\textit{Psi}$ with dimensions $N_x\times N_y \times N_z$:
 
     X = np.linspace(-Lx/2, Lx/2, Nx)
         Y = np.linspace(-Ly/2, Ly/2, Ny)

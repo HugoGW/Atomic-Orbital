@@ -3,9 +3,13 @@ In this code, we plot the atomic structure of a hydrogen atom which is given by 
 
 I resolved analyticaly the Schrödinger equation with the central potential : $V \equiv V(r)$ which is :
 
-$i \hbar \frac{\partial \psi}{\partial t} = - \frac{\hbar^2}{2m} \Delta \psi - \frac{e^2}{4\pi^2\varepsilon_0 r}$ and the solution is given by :
+$$\displaystyle i \hbar \frac{\partial \psi}{\partial t} = - \frac{\hbar^2}{2m} \Delta \psi - \frac{e^2}{4\pi^2\varepsilon_0 r}$$ 
+
+and the solution is given by :
 
 $\psi \equiv \psi_{n,l,m}(r,\theta,\phi) = R_{n,l}(r)Y_{l,m}(\theta,\phi)$ where $R_{n,l}(r)= \sqrt{ \big(\frac{2Z}{na_0} \big)^3 \frac{(n-l-1)!}{2n(n+l)!}} e^{-\frac{Zr}{na_0}} \big(\frac{2Z}{na_0} \big)^l L_{n-l-1}^{2l+1} \big(\frac{2Z}{na_0} \big)$ is the radial function of $\psi_{n,l,m}$ and $Y_{l,m}(\theta,\phi) = (-1)^m \sqrt{\frac{(2l+1)!(l-m)!}{4\pi(l+m)!}} P_l^m\big(cos(\theta) \big) e^{im\phi}$ is the orbital function.
+
+where $n \in \doubleN, l<n$ and $\abs{m} <= l$
 
 This part is given in the code by : 
 
@@ -25,8 +29,8 @@ This part is given in the code by :
     
         return 4 * np.pi * r**2 * R(r, n, l)**2 * Y(l, m, θ, φ)**2
 
+$\textbf{I - Orbital in 2D}$
 
 
-    
 
 

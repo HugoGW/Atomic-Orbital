@@ -57,8 +57,6 @@ For each i and j of X and Y, we plot a dot of a certain color that matches the p
         plt.show()
 
 
-![image](https://github.com/user-attachments/assets/97a31dee-6771-4ee2-a055-86f2cb71dbf5)
-
 $\textbf{II - Video of an orbital in 2D}$
 
 Now, we're going to use and modify the code in the $\textbf{ Part I}$ above. In fact, in the "loop" we wrote \textit{Psi[i, j] = ψ(x, y, 0, n, l, m)} which means that we plot $ψ(x, y, 0, n, l, m)$ for $z=0$. Thus, from now on, we're going to plot $ψ(x, y, z, n, l, m)$ $\forall z \in [-L_z/2, L_z/2]$ with a space length $N_z$ and a space step $dz = L_z/N_z$.
@@ -97,4 +95,51 @@ We begin by creating 3 arrays $X, Y$ and $Z$ to represent the spatial dimensions
 
 For each dot $(i,j,k) \in (x,y,z)$ we plot a colored dot that matches with the probability of an electron being at this coordinate, then we normalize by using the trapezoidal integration method in all three spatial dimensions.
 
-In order to see the inside of the 3D atomic orbital, a mask is applied to filter out points where $z \lt 0$. This is done using the condition Z_flat > 0.
+In order to see the inside of the 3D atomic orbital, a mask is applied to filter out points where $z \leq 0$. This is done using the condition Z_flat > 0.
+
+The flattened and filtered probability densities are normalized to create a probability distribution, then random sampling is performed using $\textit{np.random.choice} with the probabilities provided by the normalized probability densities. This ensures that points with higher probability densities are more likely to be sampled.
+
+The indices of the sampled points are used to extract the corresponding $X$, $Y$, $Z$, and $\textit{Psi} values.
+
+To sum up, we create a new 3D grid of points for $X$, $Y$ and $Z$ with 
+
+    X_flat, Y_flat, Z_flat = np.meshgrid(X, Y, Z, indexing='ij')
+
+Then, we convert the 3D grid arrays into 1D arrays for easier manipulation and sampling :
+
+    X_flat = X_flat.flatten()
+    Y_flat = Y_flat.flatten()
+    Z_flat = Z_flat.flatten()
+    Psi_flat = Psi.flatten()
+
+The mask $\textit{Z_flat > 0} creates a boolean array where only points with $Z>0$ are True and applying this mask to X_flat, Y_flat, Z_flat, and Psi_flat filters out the points where $z \leq 0$.
+
+The probability density array $\textit{Psi_flat} is normalized by dividing it by its sum, creating a valid probability distribution where the sum of all probabilities is 1.
+
+Then, $\textit{np.random.choice} uses the probability distribution to sample indices from the filtered arrays. This ensures that points with higher probability density have a higher chance of being chosen.
+
+Finally, the sampled points $\textit{(X_sampled, Y_sampled, Z_sampled, Psi_sampled)} are used to create a 3D scatter plot and the color of each point in the scatter plot corresponds to its probability density, providing a visual representation of regions with higher electron probability.
+
+$\textbf{IV - Results}$
+
+I lightly modified the code to gather all the plots and animations in 1 window with animation with the 3D plot to see how does the orbital look like.
+
+
+
+https://github.com/user-attachments/assets/3ccc2d5e-1316-4bbe-986b-99481d5744ed
+
+
+https://github.com/user-attachments/assets/5807affc-0b5c-4786-9c66-5f1442cb775b
+
+
+https://github.com/user-attachments/assets/f7b871aa-0af3-43bf-9d50-43c46247cc04
+
+
+https://github.com/user-attachments/assets/2c9bd6b2-c357-45dc-923b-822d47123291
+
+
+https://github.com/user-attachments/assets/8e870aac-10f3-414a-a4af-228c6137dad5
+
+
+
+

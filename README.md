@@ -7,7 +7,7 @@ $$\displaystyle i \hbar \frac{\partial \psi}{\partial t} = - \frac{\hbar^2}{2m} 
 
 and the solution is given by :
 
-$\psi \equiv \psi_{n,l,m}(r,\theta,\phi) = R_{n,l}(r)Y_{l,m}(\theta,\phi)$ where $R_{n,l}(r)= \sqrt{ \big(\frac{2Z}{na_0} \big)^3 \frac{(n-l-1)!}{2n(n+l)!}} e^{-\frac{Zr}{na_0}} \big(\frac{2Z}{na_0} \big)^l L_{n-l-1}^{2l+1} \big(\frac{2Z}{na_0} \big)$ is the radial function of $\psi_{n,l,m}$ and \
+$\psi \equiv \psi_{n,l,m}(r,\theta,\phi) = R_{n,l}(r)Y_{l,m}(\theta,\phi)$ where $R_{n,l}(r)= \sqrt{ \big(\frac{2Z}{na_0} \big)^3 \frac{(n-l-1)!}{2n(n+l)!}} e^{-\frac{Zr}{na_0}} \big(\frac{2Z}{na_0} \big)^l L_{n-l-1}^{2l+1} \big(\frac{2Z}{na_0} \big)$ is the radial function of $\psi_{n,l,m}$ and 
 
 $Y_{l,m}(\theta,\phi) = (-1)^m \sqrt{\frac{(2l+1)!(l-m)!}{4\pi(l+m)!}} P_l^m\big(cos(\theta) \big) e^{im\phi}$ is the orbital function.
 
@@ -31,7 +31,7 @@ This part is given in the code by :
     
         return 4 * np.pi * r**2 * R(r, n, l)**2 * Y(l, m, θ, φ)**2
 
-$\textbf{I - Orbital in 2D}$
+$\textbf{I - Picture of an orbital in 2D}$
 
 In this part, we're going to use the function ψ(x, y, z, n, l, m) written above to plot a picture of dimension $N_x \times N_y$ of an atomic orbital of an hydrogenoid.
 
@@ -41,7 +41,7 @@ First, we define our wave function Psi as a matrix of zeros of the size $N_x \ti
         X = np.linspace(-Lx/2, Lx/2, Nx)
         Y = np.linspace(-Ly/2, Ly/2, Ny)
 
-For each i and j of X and Y, we plot a dot of a certain color that matches with the probability of an electron to be at the coordinate (i,j) then we normalize it and plot the result.
+For each i and j of X and Y, we plot a dot of a certain color that matches the probability of an electron being at the coordinate (i,j), then we normalize it and plot the result.
 
     for i, x in enumerate(X):
             for j, y in enumerate(Y):
@@ -59,9 +59,9 @@ For each i and j of X and Y, we plot a dot of a certain color that matches with 
 
 ![image](https://github.com/user-attachments/assets/97a31dee-6771-4ee2-a055-86f2cb71dbf5)
 
+$\textbf{II - Video of an orbital in 2D}$
 
-
-
+Now, we're going to use and modify the code in the $\textbf{ Part I}$ above. In fact, in the part where we plot for each $(i,j)$ we didn't take into account the 
 
 
 

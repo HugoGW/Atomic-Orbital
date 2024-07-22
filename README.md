@@ -99,7 +99,7 @@ In order to see the inside of the 3D atomic orbital, a mask is applied to filter
 
 The flattened and filtered probability densities are normalized to create a probability distribution, then random sampling is performed using $\textit{np.random.choice} with the probabilities provided by the normalized probability densities. This ensures that points with higher probability densities are more likely to be sampled.
 
-The indices of the sampled points are used to extract the corresponding $X$, $Y$, $Z$, and $\textit{Psi} values.
+The indices of the sampled points are used to extract the corresponding $X$, $Y$, $Z$, and $\textit{Psi}$ values.
 
 To sum up, we create a new 3D grid of points for $X$, $Y$ and $Z$ with 
 
@@ -112,7 +112,7 @@ Then, we convert the 3D grid arrays into 1D arrays for easier manipulation and s
     Z_flat = Z_flat.flatten()
     Psi_flat = Psi.flatten()
 
-The mask $\textit{Z_flat > 0} creates a boolean array where only points with $Z>0$ are True and applying this mask to X_flat, Y_flat, Z_flat, and Psi_flat filters out the points where $z \leq 0$.
+The mask $\textit{Z\_flat > 0}$ creates a boolean array where only points with $Z>0$ are True and applying this mask to X_flat, Y_flat, Z_flat, and Psi_flat filters out the points where $z \leq 0$.
 
 The probability density array $\textit{Psi_flat} is normalized by dividing it by its sum, creating a valid probability distribution where the sum of all probabilities is 1.
 

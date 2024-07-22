@@ -112,7 +112,7 @@ Then, we convert the 3D grid arrays into 1D arrays for easier manipulation and s
     Z_flat = Z_flat.flatten()
     Psi_flat = Psi.flatten()
 
-The mask $\textit{Z\_flat > 0}$ creates a boolean array where only points with $Z>0$ are True and applying this mask to X_flat, Y_flat, Z_flat, and Psi_flat filters out the points where $z \leq 0$.
+The mask $\textit{Z _ flat > 0}$ creates a boolean array where only points with $Z>0$ are True and applying this mask to X_flat, Y_flat, Z_flat, and Psi_flat filters out the points where $z \leq 0$.
 
 The probability density array $\textit{Psi_flat} is normalized by dividing it by its sum, creating a valid probability distribution where the sum of all probabilities is 1.
 
